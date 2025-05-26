@@ -1,15 +1,14 @@
 package com.filesync.application.port.out;
 
-import com.filesync.domain.model.File;
 import com.filesync.domain.model.StorageLocation;
 import java.io.InputStream;
+import java.io.IOException;
 import java.util.List;
 
 public interface FileStoragePort {
-    // void save(StorageLocation location, String filePath, InputStream inputStream, long length);
-    // InputStream load(StorageLocation location, String filePath);
-    // List<File> listFiles(StorageLocation location, String path, boolean recursive);
-    // boolean delete(StorageLocation location, String filePath);
-    // boolean fileExists(StorageLocation location, String filePath);
-    // String getFileChecksum(StorageLocation location, String filePath); // Optional, for validation
+    void uploadFile(StorageLocation location, String path, InputStream inputStream, long length) throws IOException;
+    InputStream downloadFile(StorageLocation location, String path) throws IOException;
+    void deleteFile(StorageLocation location, String path) throws IOException;
+    List<String> listFiles(StorageLocation location, String path) throws IOException;
+    boolean fileExists(StorageLocation location, String path) throws IOException;
 }
